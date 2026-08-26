@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D 模型展示</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loading">模型加载中...</div>
+  <div id="info">🖱️ 鼠标拖拽旋转 | 滚轮缩放 | 右键平移</div>
+
+  <!-- Import Map 用于定义 Three.js 的 CDN 路径 -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <!-- 主脚本模块 -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>
