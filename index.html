@@ -17,6 +17,7 @@
         <li>鼠标拖拽：旋转视角</li>
         <li>滚轮：缩放模型</li>
         <li>右键拖拽：平移视角</li>
+        <li>静态网页无法使用评论功能</li>
       </ul>
       <button id="close-modal">我知道了</button>
     </div>
@@ -35,7 +36,7 @@
 
   <!-- 项目地址展示 -->
   <footer id="project-link">
-    <a href="https://github.com/cxd-nb/C999beta" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/cxd-nb/C999" target="_blank" rel="noopener noreferrer">
       🔗 查看项目源代码
     </a>
     <span> | </span>
@@ -58,5 +59,22 @@
   </script>
 
   <script type="module" src="main.js"></script>
+
+  <!-- 评论按钮 -->
+<button id="open-comments" title="查看评论">评论</button>
+
+  <!-- 评论模态框 -->
+  <div id="comments-modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="close-comments" class="close-btn">&times;</span>
+      <h2>评论</h2>
+      <div id="comment-list"></div>
+      <form id="comment-form">
+        <input type="text" id="comment-author" placeholder="你的昵称" required>
+        <textarea id="comment-content" placeholder="写下你的评论..." required></textarea>
+        <button type="submit">发表</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

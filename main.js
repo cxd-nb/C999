@@ -146,3 +146,62 @@ window.addEventListener('resize', () => {
 });
 // --- 重置视角按钮事件 ---
 document.getElementById('reset-view').addEventListener('click', resetCameraToModel);
+
+// ========== 评论功能 ==========
+
+// 获取当前选中的模型路径
+function getCurrentModelPath() {
+  return document.getElementById('model-select').value;
+}
+
+// 加载评论
+async function loadComments() {
+  const modelPath = getCurrentModelPath();
+  const response = await fetch(`api/get_comments.php?model=${encodeURIComponent(modelPath)}`);
+  const comments = await response.json();
+  const list = document.getElementById('comment-list');
+  list.innerHTML = comments.map(c => `
+    <div class="comment">
+      <strong>${c.author}</strong><span>${c.created_at}</span>
+      <p>${c.content}</p>
+    </div>
+  `).join('');
+}
+
+// 提交评论
+document.getElementById('comment-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const author = document.getElementById('comment-author').value.trim();
+  const content = document.getElementById('comment-content').value.trim();
+  const model_path = getCurrentModelPath();
+  await fetch('api/post_comment.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model_path, author, content })
+  });
+  document.getElementById('comment-author').value = '';
+  document.getElementById('comment-content').value = '';
+  loadComments();
+});
+
+const openCommentsBtn = document.getElementById('open-comments');
+const commentsModal = document.getElementById('comments-modal');
+const closeCommentsBtn = document.getElementById('close-comments');
+// 打开评论区
+openCommentsBtn.addEventListener('click', () => {
+  commentsModal.classList.remove('hidden');
+  loadComments(); // 打开时加载评论
+});
+
+// 关闭评论区
+closeCommentsBtn.addEventListener('click', () => {
+  commentsModal.classList.add('hidden');
+});
+
+// 点击模态框背景也可关闭
+commentsModal.addEventListener('click', (e) => {
+  if (e.target === commentsModal) {
+    commentsModal.classList.add('hidden');
+  }
+});
+
