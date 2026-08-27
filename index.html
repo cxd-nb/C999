@@ -8,9 +8,46 @@
 </head>
 <body>
   <div id="loading">模型加载中...</div>
-  <div id="info">🖱️ 鼠标拖拽旋转 | 滚轮缩放 | 右键平移</div>
+ 
+ <!-- 操作提示模态框 -->
+  <div id="help-modal" class="modal">
+    <div class="modal-content">
+      <h2>操作指南</h2>
+      <ul>
+        <li>鼠标拖拽：旋转视角</li>
+        <li>滚轮：缩放模型</li>
+        <li>右键拖拽：平移视角</li>
+      </ul>
+      <button id="close-modal">我知道了</button>
+    </div>
+  </div>
+  
+  <!-- 模型选择器 -->
+  <div id="model-selector">
+    <label for="model-select">选择模型：</label>
+    <select id="model-select">
+      <option value="models/model1.glb">C999的小屋</option>
+      <option value="models/model2.glb">模型 2-暂无</option>
+      <option value="models/model3.glb">模型 3-暂无</option>
+    </select>
+    <button id="reset-view" title="重置视角">回中</button>
+  </div>
 
-  <!-- Import Map 用于定义 Three.js 的 CDN 路径 -->
+  <!-- 项目地址展示 -->
+  <footer id="project-link">
+    <a href="https://github.com/cxd-nb/C999beta" target="_blank" rel="noopener noreferrer">
+      🔗 查看项目源代码
+    </a>
+    <span> | </span>
+    <a href="https://space.bilibili.com/1897315082" target="_blank" rel="noopener noreferrer">
+      🌐 模型作者 飞行社创新工坊
+    </a>
+    <span> | </span>
+    <a href="https://cxd-blog.pages.dev/" target="_blank" rel="noopener noreferrer">
+      🌐 网站作者 CXD
+    </a>
+  </footer>
+
   <script type="importmap">
     {
       "imports": {
@@ -20,7 +57,6 @@
     }
   </script>
 
-  <!-- 主脚本模块 -->
   <script type="module" src="main.js"></script>
 </body>
 </html>
